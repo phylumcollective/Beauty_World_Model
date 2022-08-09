@@ -1,7 +1,8 @@
 # Beauty_World_Model
 
 
-How to Use The “Data Prepper and VAE Trainer” Jupyter Notebook
+# **VAE Model**
+## How to Use The “Data Prepper and VAE Trainer” Jupyter Notebook
 Packages:
 If you can run the first code block with no problems, this section can be ignored.
 First and foremost, OpenCV (and potentially other packages depending on your Anaconda version) may not be in the Jupyter Notebook environment by default. The easiest way I’ve found to handle this is to use the code I’ve commented out in the “imports” block (the first one).  The commented out code does the following:
@@ -19,11 +20,17 @@ The processor then checks if “train_data.z” already exists. If it does, it s
 2)	Rename the old preprocessed data
 3)	Move the old preprocessed data to another directory
 Otherwise, the script will download all the images and reshape them into (128, 128, 1) np arrays. To ensure the preprocessing went as planned, look at the “Info on Picture Data” block and see if the results match the commented out section. This test assumes that the first image in the first directory (alphabetically) is the same as what I tested with, which is the following image:
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/49796738/183588271-3b543b8f-d110-41b4-847e-a275362c7323.png">
+
  
 (This is image 2021-02-27-1350-01-24-22)
- (Honestly though, if it goes wrong the long printout will almost certainly be nonsense that is easily detectable by human eyes, such as all 0’s or all the same value).
+
+(Honestly though, if it goes wrong the long printout will almost certainly be nonsense that is easily detectable by human eyes, such as all 0’s or all the same value).
+
 Once the data is done being processed and you’ve confirmed it went correctly, some more reshaping needs to happen so the VAE can train on it. 
 Making the VAE:
+
 This part of the code determines the architecture of the VAE. The variable “latent_dim” controls the size of the latent vector produced by the encoder. I used 2048 exclusively, but feel free to test with larger numbers. Some architecture changes may be needed to accommodate larger dimensions, but I recommend check just changing this variable first.
 Training the VAE:
 This part trains and saves the vae. Training will take time depending on the number of samples, size of the latent dimension, batch size, and epochs. Verbose is on so keeping track of how long training will take should be clear after the first epoch. The model is saved in a folder called “models,” which needs to be made beforehand (I think) under the name “vae.” TensorFlow has a weird way of saving weights, so do not touch the odd files made when saving. Note: If the model is already saved, this save will overwrite the old one, so move the old model if you want to keep it.
