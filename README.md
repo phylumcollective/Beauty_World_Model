@@ -20,8 +20,11 @@ The code only needs to be run once and future running of this commented out code
 ## **Data Processing:**
 
 The data processor starts by changing directory to a folder called “images.” It is expected that the images folder has the following properties:
+
 1)	It is in the same directory as the notebook
+
 2)	Other directories in images (there can be other stuff in images too, and in fact we will save our processed data in this directory) are collections of .NET images (if you have saved the images in another file type, change the .NET expectation in the second code block. I recommend CTRL-F’ing to find it). Each .NET image will be a training example.
+    
     a)	Since we are prepping the data for the VAE, there are no further stipulations needed on how the images are organized in each directory. They could all be in one big directory for all this processor cares.
 
 The processor then checks if **“train_data.z”** already exists. If it does, it skips all cells relating to data processing, because it already has the processed data and the notebook assumes you just want to train the VAE. In this case, it loads the already saved train data. If you would like to make a new preprocessed version of the data, you could:
